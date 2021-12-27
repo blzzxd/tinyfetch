@@ -1,0 +1,30 @@
+#!/usr/bin/env python3
+import psutil
+import distro
+import os
+import platform
+import cpuinfo
+
+from colorama import Fore, Back, Style
+from datetime import datetime
+
+
+def get_size(bytes, suffix="B"):
+    factor = 1024
+    for unit in ["", "K", "M", "G", "T", "P"]:
+        if bytes < factor:
+            return f"{bytes:.2f}{unit}{suffix}"
+        bytes /= factor
+
+boot_time_timestamp = psutil.boot_time()
+bt = datetime.fromtimestamp(boot_time_timestamp)
+
+uname = platform.uname()
+svem = psutil.virtual_memory()
+
+print("-"*4 + f'{Fore.GREEN}{os.getlogin()}{Fore.RESET}@{Fore.GREEN}{platform.node()}{Fore.RESET}' + "-"*4)
+print(f'{Fore.GREEN}System:{Fore.RESET} {distro.id()} {uname.system} {uname.machine}')
+print(f'{Fore.GREEN}Release:{Fore.RESET} {uname.release}')
+print(f'{Fore.GREEN}Boot Time:{Fore.RESET} {bt.year}/{bt.month}/{bt.day} {bt.hour}:{bt.minute}:{bt.second}')
+print(f'{Fore.GREEN}Processor:{Fore.RESET} {cpuinfo.get_cpu_info()["brand_raw"]}')
+print(f'{Fore.GREEN}RAM:{Fore.RESET} {get_size(svem.used)} / {get_size(svem.total)}')
