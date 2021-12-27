@@ -39,6 +39,6 @@ print(f'{ascii[1]} {Fore.GREEN}Distro:{Fore.RESET} {distro.id()}')
 print(f'{ascii[2]} {Fore.GREEN}Kernel:{Fore.RESET} {uname.release}')
 print(f'{ascii[3]} {Fore.GREEN}Boot Time:{Fore.RESET} {bt.year}/{bt.month}/{bt.day} {bt.hour}:{bt.minute}:{bt.second}')
 print(f'{ascii[4]} {Fore.GREEN}Processor:{Fore.RESET} {cpuinfo.get_cpu_info()["brand_raw"]}')
-print(f'{ascii[5]} {Fore.GREEN}RAM:{Fore.RESET} {get_size(svem.used)} / {get_size(svem.total)}')
+print(f'{ascii[5]} {Fore.GREEN}Memory:{Fore.RESET} {get_size(svem.used)} / {get_size(svem.total)}')
 print(f'{ascii[6]} {Fore.GREEN}IP Address:{Fore.RESET} {socket.gethostbyname(socket.gethostname())}')
 
