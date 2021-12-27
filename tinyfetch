@@ -4,10 +4,20 @@ import distro
 import os
 import platform
 import cpuinfo
+import socket
 
 from colorama import Fore, Back, Style
 from datetime import datetime
 
+ascii = (
+    '    .--.    ',
+    '   |o_o |   ',
+    '   |:_/ |   ',
+    '  //   \\ \\  ',
+    ' (|     | ) ',
+    '/\'\_   _\/`\\',
+    '\___)=(___/ '
+)
 
 def get_size(bytes, suffix="B"):
     factor = 1024
@@ -22,9 +32,13 @@ bt = datetime.fromtimestamp(boot_time_timestamp)
 uname = platform.uname()
 svem = psutil.virtual_memory()
 
-print("-"*4 + f'{Fore.GREEN}{os.getlogin()}{Fore.RESET}@{Fore.GREEN}{platform.node()}{Fore.RESET}' + "-"*4)
-print(f'{Fore.GREEN}System:{Fore.RESET} {distro.id()} {uname.system} {uname.machine}')
-print(f'{Fore.GREEN}Release:{Fore.RESET} {uname.release}')
-print(f'{Fore.GREEN}Boot Time:{Fore.RESET} {bt.year}/{bt.month}/{bt.day} {bt.hour}:{bt.minute}:{bt.second}')
-print(f'{Fore.GREEN}Processor:{Fore.RESET} {cpuinfo.get_cpu_info()["brand_raw"]}')
-print(f'{Fore.GREEN}RAM:{Fore.RESET} {get_size(svem.used)} / {get_size(svem.total)}')
+
+print('\t      ' + "-"*4 + f'{Fore.GREEN}{os.getlogin()}{Fore.RESET}@{Fore.GREEN}{platform.node()}{Fore.RESET}' + "-"*4)
+print(f'{ascii[0]} {Fore.GREEN}System:{Fore.RESET} {uname.system} {uname.machine}')
+print(f'{ascii[1]} {Fore.GREEN}Distro:{Fore.RESET} {distro.id()}')
+print(f'{ascii[2]} {Fore.GREEN}Kernel:{Fore.RESET} {uname.release}')
+print(f'{ascii[3]} {Fore.GREEN}Boot Time:{Fore.RESET} {bt.year}/{bt.month}/{bt.day} {bt.hour}:{bt.minute}:{bt.second}')
+print(f'{ascii[4]} {Fore.GREEN}Processor:{Fore.RESET} {cpuinfo.get_cpu_info()["brand_raw"]}')
+print(f'{ascii[5]} {Fore.GREEN}RAM:{Fore.RESET} {get_size(svem.used)} / {get_size(svem.total)}')
+print(f'{ascii[6]} {Fore.GREEN}IP Address:{Fore.RESET} {socket.gethostbyname(socket.gethostname())}')
+
