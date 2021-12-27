@@ -33,7 +33,7 @@ uname = platform.uname()
 svem = psutil.virtual_memory()
 
 
-print('\t      ' + "-"*4 + f'{Fore.GREEN}{os.getlogin()}{Fore.RESET}@{Fore.GREEN}{platform.node()}{Fore.RESET}' + "-"*4)
+print('\t     ' + "-"*4 + f'{Fore.GREEN}{os.getlogin()}{Fore.RESET}@{Fore.GREEN}{platform.node()}{Fore.RESET}' + "-"*4)
 print(f'{ascii[0]} {Fore.GREEN}System:{Fore.RESET} {uname.system} {uname.machine}')
 print(f'{ascii[1]} {Fore.GREEN}Distro:{Fore.RESET} {distro.id()}')
 print(f'{ascii[2]} {Fore.GREEN}Kernel:{Fore.RESET} {uname.release}')
