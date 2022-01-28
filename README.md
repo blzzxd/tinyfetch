@@ -1,7 +1,7 @@
 # tinyfetch
-Tinyfetch displays your system information into command-line
+`tinyfetch` displays your system information into command-line
 ## Post installation
-Configure tinyfetch via config.ini
+Configure `tinyfetch` via config.ini
 ```bash
 [THEME]
 text_color: WHITE <- You can change this
