@@ -18,3 +18,5 @@ Run `tinyfetch` in your command prompt
 ```bash
 $ tinyfetch
 ```
+## Note
+You can always configure `tinyfetch` at `~/.config/tinyfetch/config.ini` !
