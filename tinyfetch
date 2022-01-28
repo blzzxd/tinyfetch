@@ -1,12 +1,19 @@
 #!/usr/bin/env python3
+
+# Artur Asimov
+# https://github.com/artur-asimov/tinyfetch
+
+from typing import Text
 import psutil
 import distro
 import os
 import platform
 import cpuinfo
 import socket
+import configparser
+import os.path
 
-from colorama import Fore, Back, Style
+from colorama import Fore
 from datetime import datetime
 
 ascii = (
@@ -18,6 +25,9 @@ ascii = (
     '/\'\_   _\/`\\',
     '\___)=(___/ '
 )
+
+config = configparser.ConfigParser()
+config.read(f'/home/{os.getlogin()}/.config/tinyfetch/config.ini')
 
 def get_size(bytes, suffix="B"):
     factor = 1024
@@ -33,12 +43,23 @@ uname = platform.uname()
 svem = psutil.virtual_memory()
 
 
-print('\t     ' + "-"*4 + f'{Fore.GREEN}{os.getlogin()}{Fore.RESET}@{Fore.GREEN}{platform.node()}{Fore.RESET}' + "-"*4)
-print(f'{ascii[0]} {Fore.GREEN}System:{Fore.RESET} {uname.system} {uname.machine}')
-print(f'{ascii[1]} {Fore.GREEN}Distro:{Fore.RESET} {distro.id()}')
-print(f'{ascii[2]} {Fore.GREEN}Kernel:{Fore.RESET} {uname.release}')
-print(f'{ascii[3]} {Fore.GREEN}Boot Time:{Fore.RESET} {bt.year}/{bt.month}/{bt.day} {bt.hour}:{bt.minute}:{bt.second}')
-print(f'{ascii[4]} {Fore.GREEN}Processor:{Fore.RESET} {cpuinfo.get_cpu_info()["brand_raw"]}')
-print(f'{ascii[5]} {Fore.GREEN}Memory:{Fore.RESET} {get_size(svem.used)} / {get_size(svem.total)}')
-print(f'{ascii[6]} {Fore.GREEN}IP Address:{Fore.RESET} {socket.gethostbyname(socket.gethostname())}')
+# Storing configuration settings in some variables
+try:
+    TitleColor = getattr(Fore, config['THEME']['titles_color'])
+    TextColor = getattr(Fore, config['THEME']['text_color'])
+    ArtColor = getattr(Fore, config['THEME']['art_color'])
+
+    output = f"""{TextColor}\t\t {"-"*4}{TitleColor}{os.getlogin()}{TextColor}@{TitleColor}{platform.node()}{TextColor}{"-"*4}
+    {ArtColor}{ascii[0]} {TitleColor}System:{TextColor} {uname.system} {uname.machine}
+    {ArtColor}{ascii[1]} {TitleColor}Distro:{TextColor} {distro.id()}
+    {ArtColor}{ascii[2]} {TitleColor}Kernel:{TextColor} {uname.release}
+    {ArtColor}{ascii[3]} {TitleColor}Boot Time:{TextColor} {bt.year}/{bt.month}/{bt.day} {bt.hour}:{bt.minute}:{bt.second}
+    {ArtColor}{ascii[4]} {TitleColor}Processor:{TextColor} {cpuinfo.get_cpu_info()["brand_raw"]}
+    {ArtColor}{ascii[5]} {TitleColor}Memory:{TextColor} {get_size(svem.used)} / {get_size(svem.total)}
+    {ArtColor}{ascii[6]} {TitleColor}IP Address:{TextColor} {socket.gethostbyname(socket.gethostname())}"""
+
+    print(output)
+except:
+    print('tinyfetch error! Check your configuration file.')
+
 
