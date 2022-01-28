@@ -26,8 +26,11 @@ ascii = (
     '\___)=(___/ '
 )
 
-config = configparser.ConfigParser()
-config.read(f'/home/{os.getlogin()}/.config/tinyfetch/config.ini')
+if os.path.isfile(f'/home/{os.getlogin()}/.config/tinyfetch/config.ini') :
+    config = configparser.ConfigParser()
+    config.read(f'/home/{os.getlogin()}/.config/tinyfetch/config.ini')
+else :
+    print('Cannot detect your configuration file in [~/.config/tinyfetch/config]. Run install script again.')
 
 def get_size(bytes, suffix="B"):
     factor = 1024
