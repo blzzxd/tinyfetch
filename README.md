@@ -1,8 +1,20 @@
 # tinyfetch
 Tinyfetch displays your system information into command-line
-![](https://github.com/artur-asimov/tinyfetch/blob/main/img.png?raw=true)
-## Installation
+## Post installation
+Configure tinyfetch via config.ini
 ```bash
-git clone https://github.com/artur-asimov/tinyfetch.git
-python install.py
+[THEME]
+text_color: WHITE <- You can change this
+titles_color: WHITE <- This
+art_color: WHITE <- And this
+```
+## Installation
+Run the following command
+```bash
+$ python install.py
+```
+## Run
+Run `tinyfetch` in your command prompt
+```bash
+$ tinyfetch
 ```
