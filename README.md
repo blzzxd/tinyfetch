@@ -1,7 +1,7 @@
 # tinyfetch
 `tinyfetch` displays your system information into command-line
 ## Preview
-```bash
+```
                  ----artur@arch----
         .--.     System: Linux x86_64
        |o_o |    Distro: arch
