@@ -3,7 +3,6 @@
 # Artur Asimov
 # https://github.com/artur-asimov/tinyfetch
 
-from typing import Text
 import psutil
 import distro
 import os
