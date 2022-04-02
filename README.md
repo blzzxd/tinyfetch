@@ -11,7 +11,7 @@
     /'\_   _\/`\ Memory: 3.29GB / 15.63GB
     \___)=(___/  IP Address: 127.0.1.1
 ```
-## Post installation
+## Pre installation
 Configure `tinyfetch` via config.ini
 ```bash
 [THEME]
